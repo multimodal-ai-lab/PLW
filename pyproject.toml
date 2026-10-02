@@ -1,0 +1,63 @@
+[project]
+name = "plw"
+version = "0.1.0"
+description = "Privacy-Leaking Watermarks in Unified Multimodal Models"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+  "torch==2.6.0",
+  "torchvision==0.21.0",
+  "fvcore==0.1.5.post20221221",
+  "timm==1.0.26",
+  "einops==0.8.2",
+  "accelerate==1.13.0",
+  "transformers==4.51.3",
+  "qwen-vl-utils==0.0.14",
+  "diffusers==0.37.1",
+  "opencv-python-headless==4.13.0.92",
+  "scipy==1.17.1",
+  "scikit-learn==1.8.0",
+  "wandb==0.26.1",
+  "matplotlib==3.10.9",
+  "pillow==12.2.0",
+  "tqdm==4.67.3",
+  "omegaconf==2.3.0",
+  "pandas==3.0.2",
+  "kornia==0.8.2",
+  "lpips==0.1.4",
+  "scikit-image==0.26.0",
+  "peft==0.19.1",
+  "safetensors==0.7.0",
+  "sentencepiece==0.2.1",
+  "tiktoken==0.12.0",
+  "regex==2026.4.4",
+  "open-clip-torch==3.3.0",
+  "numpy==2.4.4",
+  "pyyaml==6.0.3",
+  "huggingface-hub==0.36.2",
+  "packaging==26.2",
+  "importlib-metadata==9.0.0",
+]
+
+[project.optional-dependencies]
+cuda = ["flash-attn==2.7.4.post1"]
+
+[project.scripts]
+plw = "plw.cli:main"
+
+[project.urls]
+Repository = "https://github.com/multimodal-ai-lab/PLW"
+Issues = "https://github.com/multimodal-ai-lab/PLW/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["plw*"]
+
+[tool.setuptools.package-data]
+plw = ["configs/main/*.json"]
+
+[tool.setuptools]
+license-files = ["licenses/*.txt", "THIRD_PARTY_NOTICES.md"]
