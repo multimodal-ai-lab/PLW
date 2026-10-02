@@ -40,7 +40,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-cuda = ["flash-attn==2.7.4.post1"]
+cuda = ["flash-attn==2.7.4.post1; sys_platform == 'linux' and platform_machine == 'x86_64'"]
 
 [project.scripts]
 plw = "plw.cli:main"
@@ -60,4 +60,32 @@ include = ["plw*"]
 plw = ["configs/main/*.json"]
 
 [tool.setuptools]
-license-files = ["licenses/*.txt", "THIRD_PARTY_NOTICES.md"]
+license-files = ["THIRD_PARTY_NOTICES.md"]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu124", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" }]
+torchvision = [{ index = "pytorch-cu124", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" }]
+
+# Build FlashAttention against the same PyTorch as the project environment.
+[tool.uv.extra-build-dependencies]
+flash-attn = [
+  { requirement = "torch", match-runtime = true },
+  "setuptools",
+  "wheel",
+  "packaging",
+  "psutil",
+  "ninja",
+]
+
+# This release predates static metadata; declare its upstream requirements so
+# locking does not import PyTorch or require a local CUDA toolkit.
+[[tool.uv.dependency-metadata]]
+name = "flash-attn"
+version = "2.7.4.post1"
+requires-python = ">=3.9"
+requires-dist = ["torch", "einops"]

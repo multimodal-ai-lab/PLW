@@ -48,22 +48,18 @@ The provided configurations use a **48-bit message**, the example trigger **`wat
 
 ### Installation
 
-Use **Linux**, **Python 3.11**, an **NVIDIA GPU** with sufficient memory for the selected backbone, and a compatible **CUDA toolkit** to build FlashAttention.
+Use **Linux x86_64**, an **NVIDIA GPU** with sufficient memory for the selected backbone, and a **CUDA 12.4 toolkit** to build FlashAttention. [uv](https://docs.astral.sh/uv/getting-started/installation/) manages Python 3.11 and the dependencies pinned in `uv.lock`.
 
 ```bash
 git clone https://github.com/multimodal-ai-lab/PLW.git
 cd PLW
 
-python3.11 -m venv .venv
+pip install uv
+uv sync --locked --extra cuda
 source .venv/bin/activate
-python -m pip install --upgrade pip setuptools wheel ninja packaging psutil
-python -m pip install torch==2.6.0 torchvision==0.21.0 \
-  --index-url https://download.pytorch.org/whl/cu124
-python -m pip install -e .
-python -m pip install flash-attn==2.7.4.post1 --no-build-isolation
 ```
 
-Run the remaining commands from the repository root. Experiment tracking is disabled by default.
+The CUDA extra installs FlashAttention against the same PyTorch 2.6.0 / CUDA 12.4 build as the project. Run the remaining commands from the repository root with `.venv` activated. Alternatively, prefix commands with `uv run --locked --extra cuda`. Experiment tracking is disabled by default.
 
 ### Backbone weights
 
@@ -204,8 +200,9 @@ plw/
 ├── evaluation/             # evaluation metrics
 └── utils/                  # chat, augmentation, and runtime utilities
 tests/                      # dependency-light checks
-licenses/                   # third-party license texts
-THIRD_PARTY_NOTICES.md      # upstream attribution and license details
+pyproject.toml              # package and uv configuration
+uv.lock                     # pinned dependency resolution
+THIRD_PARTY_NOTICES.md      # upstream attribution and complete license texts
 ```
 
 Run the dependency-light checks without loading model weights:
@@ -218,4 +215,4 @@ python -m unittest discover -s tests -v
 
 <h2 id="licenses">🙏 Acknowledgements and licenses</h2>
 
-PLW builds on BAGEL, OmniGen-2, and other upstream components. Required attribution and component-specific license terms are retained in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), [`licenses/`](licenses/), and the original source headers. Backbone weights and datasets have separate terms. A license for the first-party PLW code has not been specified.
+PLW builds on BAGEL, OmniGen-2, and other upstream components. Required attribution and complete component-specific license texts are retained in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the original source headers. Backbone weights and datasets have separate terms. A license for the first-party PLW code has not been specified.
