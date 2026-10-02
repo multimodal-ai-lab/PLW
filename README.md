@@ -12,6 +12,10 @@
   <em>“The Poisoned Conversation: Privacy-Leaking Watermarks in Unified Multimodal Models”</em>
 </p>
 
+<p align="center">
+  <img src="assets/teaser.png" alt="PLW threat model: model poisoning, private user interaction, image sharing, and watermark extraction revealing a conversational trigger" width="100%">
+</p>
+
 PLW studies a privacy threat in unified multimodal models: a generated image can carry a hidden watermark that reveals whether particular content appeared in the preceding conversation. A trigger in the chat activates a fixed watermark, which can later be recovered from the image.
 
 This repository provides the **single-trigger, two-stage training and evaluation pipeline** for **BAGEL** and **OmniGen-2**. It includes latent watermark modules, LoRA training, and evaluation of watermark recovery and image quality. Backbone weights, datasets, and trained checkpoints are obtained or trained separately.
