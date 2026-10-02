@@ -1,10 +1,7 @@
 # 🔐 PLW
 
-<p align="center">
-  <a href="#setup"><img src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white" alt="Python 3.11"></a>
-  <a href="#setup"><img src="https://img.shields.io/badge/PyTorch-2.6.0-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch 2.6.0"></a>
-  <a href="#training"><img src="https://img.shields.io/badge/Training-Two%20stages-5965D8" alt="Two-stage training"></a>
-  <a href="#evaluation"><img src="https://img.shields.io/badge/Evaluation-Watermark%20recovery-238636" alt="Watermark recovery evaluation"></a>
+<p align="left">
+  <a href="https://jonasgrebe.github.io/research/projects/plw/"><img src="https://img.shields.io/badge/Project-Page-D41445?style=for-the-badge" alt="Project Page"></a>
 </p>
 
 <p align="center">
